@@ -14,14 +14,15 @@ function App() {
   const dueRef = useRef();
 
   const [open, setOpen] = useState(false);
-  const [task, setTask] = useState({
-    title: "",
-    description: "",
-    due: "",
-    isComplete: false,
-    reminder: false,
-  });
-  const [taskList, setTaskList] = useState([]);
+  const [taskList, setTaskList] = useState([
+    {
+      title: "First",
+      description: "This is the default task",
+      due: "2023-10-10",
+      isComplete: false,
+      reminder: false,
+    },
+  ]);
   const [editedId, setEditedId] = useState(null);
   const [toggleSubmit, setToggleSubmit] = useState(true);
 
@@ -93,17 +94,11 @@ function App() {
         })
       );
 
-      titleRef.current.value = " ";
-      descriptionRef.current.value = " ";
-      dueRef.current.value = " ";
+      titleRef.current.value = "";
+      descriptionRef.current.value = "";
+      dueRef.current.value = "";
       setToggleSubmit(true);
     } else {
-      setTask({
-        title: title,
-        description: description,
-        due: due,
-      });
-
       setTaskList([
         ...taskList,
         {
@@ -114,9 +109,9 @@ function App() {
         },
       ]);
 
-      titleRef.current.value = " ";
-      descriptionRef.current.value = " ";
-      dueRef.current.value = " ";
+      titleRef.current.value = "";
+      descriptionRef.current.value = "";
+      dueRef.current.value = "";
     }
   }
 
