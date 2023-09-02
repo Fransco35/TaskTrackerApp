@@ -43,12 +43,40 @@ function App() {
     setTaskList(newTaskList);
   }
 
+  function toggleReminder(id) {
+    setTaskList(
+      taskList.map((task) => {
+        if (task.id === id) {
+          return { ...task, reminder: !task.reminder };
+        } else {
+          return task;
+        }
+      })
+    );
+  }
+
+  function toggleCompletion(id) {
+    setTaskList(
+      taskList.map((task) => {
+        if (task.id === id) {
+          return { ...task, isComplete: !task.isComplete };
+        } else {
+          return task;
+        }
+      })
+    );
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
 
     const title = titleRef.current.value;
     const description = descriptionRef.current.value;
     const due = dueRef.current.value;
+
+    if (title.trim() === "" || description.trim() === "" || due.trim() === "") {
+      return alert("Fill all required inputs");
+    }
 
     if (!toggleSubmit) {
       setTaskList(
@@ -154,11 +182,8 @@ function App() {
 
           {taskList.map((task) => {
             return (
-              <Col sm={12} md={6} lg={3} key={task.id}>
-                <Card
-                  style={{ width: "15rem", margin: "1rem auto" }}
-                  id={task.id}
-                >
+              <Col sm={12} md={6} lg={3} key={task.id} className="col">
+                <Card className="taskCard">
                   <Card.Body>
                     <Button
                       variant="outline-primary"
@@ -172,7 +197,37 @@ function App() {
                       Due on - {task.due}
                     </Card.Subtitle>
                     <Card.Text>{task.description}</Card.Text>
-
+                    <div className="reminderBox">
+                      <label htmlFor="reminder"> Set Reminder</label>
+                      <div
+                        onClick={() => toggleReminder(task.id)}
+                        className="reminder"
+                        style={
+                          task.reminder
+                            ? { backgroundColor: "#0d6efd", color: "#fff" }
+                            : { backgroundColor: "#6c757d", color: "#fff" }
+                        }
+                      >
+                        {task.reminder ? "ON" : "OFF"}
+                      </div>
+                    </div>
+                    <div className="completionBox">
+                      <input
+                        type="checkbox"
+                        value={task.isComplete}
+                        onClick={() => toggleCompletion(task.id)}
+                      />
+                      <div
+                        className="completion"
+                        style={
+                          task.isComplete
+                            ? { backgroundColor: "#0d6efd", color: "#fff" }
+                            : { backgroundColor: "#6c757d", color: "#fff" }
+                        }
+                      >
+                        {task.isComplete ? "Complete" : "Incomplete"}
+                      </div>
+                    </div>
                     <Button
                       variant="outline-primary"
                       className="mt-2"

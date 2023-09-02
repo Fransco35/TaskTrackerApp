@@ -26,6 +26,7 @@ body {
   border: 2px solid dodgerblue;
   padding: 20px;
   border-radius: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
 
 .containerTwo {
@@ -41,8 +42,13 @@ body {
 }
 
 .col {
-  margin: 1px;
-  border: 1px solid #000;
+  margin: 10px 0;
+}
+
+.taskCard {
+  width: 17rem;
+  margin: "10rem auto";
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
 
 .cardBtn {
@@ -50,4 +56,32 @@ body {
   position: absolute;
   top: 5px;
   right: 5px;
+}
+
+.reminderBox {
+  display: flex;
+  align-items: center;
+}
+
+.completionBox {
+  display: flex;
+  width: 10rem;
+  position: absolute;
+  bottom: 10px;
+  right: 3px;
+}
+
+.reminder,
+.completion {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+  padding: 2px 15px;
+  border-radius: 15px;
+}
+
+.completion {
+  margin: 10px 3px;
 }
