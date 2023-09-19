@@ -1,6 +1,6 @@
 # Task Tracker React App
 
-This is a Task tracker frontend application made with React.js . It enables users carry out the following :-
+This is a Task tracker frontend application I made with React.js . It enables users carry out the following :-
 
 1. Add tasks to the task list.
 2. Edit and update tasks.
